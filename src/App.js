@@ -1,10 +1,8 @@
 import React, { useState }  from 'react';
-
 import './App.css';
 
 const api = {
-  key: 'fbfe64de86225451fd088542861b90ae',
-  base: 'https://api.openweathermap.org/data/2.5/'
+
 }
 
 function App() {
@@ -13,7 +11,7 @@ function App() {
 
   const search = (e) => {
     if(e.key === 'Enter') {
-      fetch(`${api.base}weather?q=${query}&units=imperial&appid=${api.key}`)
+      fetch(`${api.base}weather?q=${query}&units=imperial&appid=${api.key}`) 
         .then(res => res.json())
         .then(res => {
           setWeather(res);
@@ -24,6 +22,11 @@ function App() {
     }
   };
   
+if (process.env.NODE_ENV !== "production") {
+  // must use 'require' (import only allowed at top of file)
+  console.log('hi')
+}
+
   const dateBuilder = (d) => {
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
